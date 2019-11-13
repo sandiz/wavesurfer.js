@@ -287,9 +287,9 @@ export default class MultiCanvas extends Drawer {
                     this.params.barGap === null
                         ? Math.max(this.params.pixelRatio, ~~(bar / 2))
                         : Math.max(
-                              this.params.pixelRatio,
-                              this.params.barGap * this.params.pixelRatio
-                          );
+                            this.params.pixelRatio,
+                            this.params.barGap * this.params.pixelRatio
+                        );
                 const step = bar + gap;
 
                 const scale = length / this.width;
@@ -450,8 +450,8 @@ export default class MultiCanvas extends Drawer {
                 if (this.params.splitChannels) {
                     this.setHeight(
                         channels.length *
-                            this.params.height *
-                            this.params.pixelRatio
+                        this.params.height *
+                        this.params.pixelRatio
                     );
                     return channels.forEach((channelPeaks, i) =>
                         this.prepareDraw(channelPeaks, i, start, end, fn)
@@ -534,7 +534,7 @@ export default class MultiCanvas extends Drawer {
     updateProgress(position) {
         this.style(this.progressWave, {
             //width: position + 'px'
-            transform: `translate3d(${position}px, 0px, 0px)`
+            transform: `translateX(${position}px)`
         });
     }
 }
