@@ -79,7 +79,8 @@ export default class CursorPlugin {
         customShowTimeStyle: {},
         showTime: false,
         followCursorY: false,
-        formatTimeCallback: null
+        formatTimeCallback: null,
+        extraOffset: 0,
     };
 
     /**
@@ -244,8 +245,15 @@ export default class CursorPlugin {
      * @param {boolean} flip Flag to flip duration text from right to left
      */
     updateCursorPosition(xpos, ypos, flip = false) {
+        let offset = 0;
+        if (Number.isNaN(this.params.extraOffset)) {
+            offset = 0;
+        }
+        else {
+            offset = this.params.extraOffset;
+        }
         this.style(this.cursor, {
-            left: `${xpos}px`
+            left: `${xpos + offset}px`
         });
         if (this.params.showTime) {
             const duration = this.wavesurfer.getDuration();
@@ -265,7 +273,7 @@ export default class CursorPlugin {
                 xpos -= textOffset;
             }
             this.style(this.showTime, {
-                left: `${xpos}px`,
+                left: `${xpos + offset}px`,
                 top: `${ypos}px`,
                 visibility: 'visible'
             });
