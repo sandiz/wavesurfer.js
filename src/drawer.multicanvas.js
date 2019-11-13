@@ -298,9 +298,9 @@ export default class MultiCanvas extends Drawer {
                     this.params.barGap === null
                         ? Math.max(this.params.pixelRatio, ~~(bar / 2))
                         : Math.max(
-                              this.params.pixelRatio,
-                              this.params.barGap * this.params.pixelRatio
-                          );
+                            this.params.pixelRatio,
+                            this.params.barGap * this.params.pixelRatio
+                        );
                 const step = bar + gap;
 
                 const scale = length / this.width;
@@ -394,7 +394,7 @@ export default class MultiCanvas extends Drawer {
      * @param {channelIndex} channelIndex The channel index of the line drawn
      */
     drawLine(peaks, absmax, halfH, offsetY, start, end, channelIndex) {
-       const { waveColor, progressColor } = this.params.splitChannelsOptions.channelColors[channelIndex] || {};
+        const { waveColor, progressColor } = this.params.splitChannelsOptions.channelColors[channelIndex] || {};
         this.canvases.forEach((entry, i) => {
             this.setFillStyles(entry, waveColor, progressColor);
             entry.drawLines(peaks, absmax, halfH, offsetY, start, end);
@@ -480,18 +480,18 @@ export default class MultiCanvas extends Drawer {
                 const channels = peaks;
 
                 if (this.params.splitChannels) {
-                    const filteredChannels =  channels.filter((c, i) => !this.hideChannel(i));
+                    const filteredChannels = channels.filter((c, i) => !this.hideChannel(i));
                     if (!this.params.splitChannelsOptions.overlay) {
                         this.setHeight(
                             Math.max(filteredChannels.length, 1) *
-                                this.params.height *
-                                this.params.pixelRatio
+                            this.params.height *
+                            this.params.pixelRatio
                         );
-                    } 
+                    }
 
-                    return channels.forEach((channelPeaks, i) => 
+                    return channels.forEach((channelPeaks, i) =>
                         this.prepareDraw(channelPeaks, i, start, end, fn, filteredChannels.indexOf(channelPeaks))
-                    );                    
+                    );
                 }
                 peaks = channels[0];
             }
@@ -579,7 +579,7 @@ export default class MultiCanvas extends Drawer {
     updateProgress(position) {
         this.style(this.progressWave, {
             //width: position + 'px'
-            transform: `translate3d(${position}px, 0px, 0px)`
+            transform: `translateX(${position}px)`
         });
     }
 }
