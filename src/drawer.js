@@ -99,7 +99,7 @@ export default class Drawer extends util.Observer {
         if (!this.params.fillParent && nominalWidth < parentWidth) {
             progress =
                 (this.params.rtl ? bbox.right - clientX : clientX - bbox.left) *
-                    (this.params.pixelRatio / nominalWidth) || 0;
+                (this.params.pixelRatio / nominalWidth) || 0;
 
             if (progress > 1) {
                 progress = 1;
@@ -110,7 +110,7 @@ export default class Drawer extends util.Observer {
                     ? bbox.right - clientX
                     : clientX - bbox.left) +
                     this.wrapper.scrollLeft) /
-                    this.wrapper.scrollWidth || 0;
+                this.wrapper.scrollWidth || 0;
         }
 
         return progress;
@@ -330,6 +330,12 @@ export default class Drawer extends util.Observer {
                     this.params.autoCenterImmediately
                 );
             }
+            if (this.params.scrollParent && this.params.scrollPage) {
+                const scrollLeft = this.wrapper.scrollLeft + this.wrapper.clientWidth;
+                if (pos > scrollLeft) {
+                    this.wrapper.scrollLeft += this.wrapper.clientWidth;
+                }
+            }
 
             this.updateProgress(pos);
         }
@@ -355,14 +361,14 @@ export default class Drawer extends util.Observer {
      *
      * @abstract
      */
-    updateCursor() {}
+    updateCursor() { }
 
     /**
      * Called when the size of the container changes so the renderer can adjust
      *
      * @abstract
      */
-    updateSize() {}
+    updateSize() { }
 
     /**
      * Draw a waveform with bars
@@ -377,7 +383,7 @@ export default class Drawer extends util.Observer {
      * @param {number} end The x-offset of the end of the area that should be
      * rendered
      */
-    drawBars(peaks, channelIndex, start, end) {}
+    drawBars(peaks, channelIndex, start, end) { }
 
     /**
      * Draw a waveform
@@ -392,14 +398,14 @@ export default class Drawer extends util.Observer {
      * @param {number} end The x-offset of the end of the area that should be
      * rendered
      */
-    drawWave(peaks, channelIndex, start, end) {}
+    drawWave(peaks, channelIndex, start, end) { }
 
     /**
      * Clear the waveform
      *
      * @abstract
      */
-    clearWave() {}
+    clearWave() { }
 
     /**
      * Render the new progress
@@ -407,5 +413,5 @@ export default class Drawer extends util.Observer {
      * @abstract
      * @param {number} position X-Offset of progress position in pixels
      */
-    updateProgress(position) {}
+    updateProgress(position) { }
 }
