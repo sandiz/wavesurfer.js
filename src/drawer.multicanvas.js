@@ -582,4 +582,11 @@ export default class MultiCanvas extends Drawer {
             transform: `translateX(${position}px)`
         });
     }
+
+    updateProgressViaWidth(position) {
+        this.style(this.progressWave, {
+            width: position + 'px'
+            //transform: `translateX(${position}px)`
+        });
+    }
 }
